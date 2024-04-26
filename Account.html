@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Account</title>
+    <style>
+         ::-webkit-scrollbar {
+            display: none;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color:  #d7cece;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        /* Existing styles for table */
+        .account-info table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .account-info table th,
+        .account-info table td {
+            padding: 10px;
+            border-bottom: 1px solid #126180;
+            text-align: left;
+        }
+
+        .account-info table th {
+            background-color: #126180;
+        }
+
+        /* Styles for form inputs and buttons */
+        input[type="password"], input[type="submit"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: rgb(230, 185, 52);
+            color: #fff;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: rgb(236, 192, 138); 
+        }
+
+        .account-section {
+            margin-top: 30px;
+            font-size: 10px;
+        }
+
+        .account-section h2 {
+            margin-bottom: 10px;
+            color: rgb(230, 185, 52);
+        }
+
+        .account-section a {
+            color: rgb(20, 17, 17);
+            text-decoration: none;
+            margin-left: 10px;
+            font-weight: bold;
+        }
+
+        .account-section a:hover {
+            text-decoration: underline;
+        }
+
+        .logout {
+            padding: 10px;
+            margin-top: 50px;
+            margin-left: 10px;
+            background-color: rgb(230, 185, 52);
+            border: none;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .logout:hover {
+            background-color: rgb(236, 192, 138);
+        }
+            
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>My Account</h1>
+
+    <!-- Existing sections -->
+    <div class="account-info">
+        <h4>Profit/Loss Summary</h4>
+        <table>
+            <tr>
+                <th>Month</th>
+                <th>Profit</th>
+                <th>Loss</th>
+            </tr>
+            <tr>
+                <td>March 2024</td>
+                <td>$500</td>
+                <td>$200</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="account-info">
+        <h4>Order History</h4>
+        <table>
+            <tr>
+                <th>Order ID</th>
+                <th>Item</th>
+                <th>Price</th>
+                <th>Status</th>
+            </tr>
+            <tr>
+                <td>12345</td>
+                <td>Yellow purse</td>
+                <td>$50</td>
+                <td>Delivered</td>
+            </tr>
+            <!-- Add more rows as needed -->
+        </table>
+    </div>
+
+    <div class="change-password-form">
+        <h4>Change Password</h4>
+        <form action="#" method="post">
+            <input type="password" name="current_password" placeholder="Current Password" required>
+            <input type="password" name="new_password" placeholder="New Password" required>
+            <input type="password" name="confirm_new_password" placeholder="Confirm New Password" required>
+            <input type="submit" value="Change Password">
+        </form>
+    </div>
+
+    <!-- New sections -->
+    <div class="account-section">
+        <h2><a href="#personal-info">Personal Information</a></h2>
+    </div>
+
+    <div class="account-section">
+        <h2><a href="#profile-picture">Profile Picture</a></h2>
+    </div>
+
+    <div class="account-section">
+        <h2><a href="#payment-methods">Payment Methods</a></h2>
+    </div>
+
+    <div class="account-section">
+        <h2><a href="#subscription-info">Subscription Information</a></h2>
+    </div>
+
+    <div class="account-section">
+        <h2><a href="#notification-settings">Notification Settings</a></h2>
+    </div>
+
+    <div class="account-section">
+        <h2><a href="#security-settings">Security Settings</a></h2>
+    </div>
+
+    <div class="account-section">
+        <h2><a href="#purchase-history">Purchase History</a></h2>
+    </div>
+
+    <div class="account-section">
+        <h2><a href="#wishlist">Wishlist</a></h2>
+    </div>
+
+    <div class="account-section">
+        <h2><a href="./Contact-us.html">Feedback / Support</a></h2>
+    </div>
+
+    <div class="account-section">
+        <h2><a href="#activity-log">Activity Log</a></h2>
+
+        <button class="logout">Log out</button>
+    </div>
+</div>
+
+</body>
+</html>

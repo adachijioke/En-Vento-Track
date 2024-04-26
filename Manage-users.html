@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Users</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    height: 60px;
+    border-bottom: 8px solid #A1CAF1;
+    background-color: #fff;
+}
+
+.logo img {
+    height: 30vh;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+}
+
+.user-profile i {
+    font-size: 20px;
+    margin-right: 10px;
+    border-radius: 50%;
+    background-color: #A1CAF1;
+    color: #126180;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.user-profile .user-initials {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: purple;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    margin-left: 8px;
+}
+
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    border-right: 10px solid #A1CAF1;
+    float: left;
+    background-color: #fff;
+}
+
+.sidebar li {
+    padding: 15px 15px;
+    font-size: 15px;
+    list-style: none;
+}
+
+.sidebar li a {
+    text-decoration: none;
+    color: #126180;
+    display: block;
+}
+
+.sidebar li a:hover {
+    background: #A1CAF1;
+    border-radius: 5px;
+    padding: 5px 5px;
+    transition: 0.5s all;
+}
+
+.sidebar li a:active {
+    color: #4C516D;
+}
+
+.content {
+    margin-left: 250px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.user-list {
+    list-style: none;
+    padding: 0;
+}
+
+.user {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+}
+
+.user .username {
+    font-weight: bold;
+}
+
+    .sub-header {
+    background-color: #126180;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center; /* Align items vertically */
+    justify-content: space-between; /* Align items with space between them */
+}
+
+.sub-header h2, .sub-header h4 {
+    margin: 0;
+}
+
+.sub-header button {
+    padding: 8px 20px;
+    background-color: #fff;
+    color: #126180;
+    border: 2px solid #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.sub-header button:hover {
+    background-color: #126180;
+    color: #fff;
+}
+
+        .user-box {
+        display: flex;
+        align-items: center;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        }
+
+        .user-box img {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        margin-right: 20px;
+        }
+
+        .user-details {
+        display: flex; /* Display user details as flex */
+        flex-wrap: wrap; /* Allow items to wrap if necessary */
+        align-items: center; /* Center align items vertically */
+        flex: 1; /* Take remaining space */
+        color: #126180;
+        }
+
+        .user-details p {
+        margin: 5px 20px 5px 0;
+        }
+
+        .password {
+        display: flex;
+        align-items: center;
+        margin-right: 20px;
+        }
+
+        .password input {
+        border: none;
+        background: transparent;
+        outline: none;
+        margin-right: 10px;
+        color: #126180;
+        }
+
+        .password i {
+        cursor: pointer;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            margin-top: auto;
+            color: #126180;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 120px;
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 5px;
+            padding: 5px 0;
+        }
+
+        .dropdown-content a {
+            color: #126180;
+            padding: 10px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: rgb(184, 165, 16);
+            border-radius: 5px;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        /* Responsive adjustments */
+        @media only screen and (max-width: 768px) {
+        .user-box img {
+            margin-right: 10px;
+        }
+        .user-details p {
+            margin-right: 10px;
+        }
+        .password,
+        .dropdown {
+            margin-right: 10px;
+        }
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="./Images/icons/en-vento-track.png" alt="Company Logo">
+        </div>
+        <div class="user-profile">
+            <a href="./search"><i class="fas fa-search"></i></a>
+            <a href="./Notification.html"><i class="fas fa-bell"></i></a>
+            <a href="./Profile.html" style="list-style-type: none;"><div class="user-initials">RS</div></a>
+        </div>
+    </header>
+
+    <div class="sidebar">
+        <ul>
+            <!-- Sidebar items -->
+            <li><a href="./Dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+            <li><a href=""><i class="fas fa-box"></i> Products</a></li>
+            <li><a href="./Products.html"><i class="fas fa-chart-pie"></i> Reports</a></li>
+            <li><a href="./"><i class="fas fa-shopping-cart"></i> Orders</a></li>
+            <li><a href=""><i class="fas fa-dollar-sign"></i> Sales</a></li>
+            <li><a href="./Add-Product.html"><i class="fas fa-plus"></i> Add Products</a></li>
+            <li><a href=""><i class="fas fa-users"></i> Manage Users</a></li>
+            <li><a href=""><i class="fas fa-cog"></i> Settings</a></li>
+            <li><a href="./Contact-us.html"><i class="fas fa-question-circle"></i> Need Support?</a></li>
+            <li><a href="./Terms-and-Conditions.html"><i class="fas fa-file-alt"></i> Terms and Conditions</a></li>
+            <li><a href="./Terms-and-Conditions.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+        </ul>
+    </div>
+
+    <div class="content">
+        <div class="sub-header">
+            <h2>Manage Users</h2>
+            <h4>Create New User</h4>
+            <button>View User</button>
+        </div>
+
+        <div class="user-box">
+            <img src="./Images/profile1.jpeg" alt="Profile Picture" style="margin-right: 50px;">
+            <div class="user-details">
+                <p style="margin-right: 50px;">RS1234</p>
+                <p style="margin-right: 50px;">Administrator</p>
+                <p style="margin-right: 50px;">rs1chukwudimma@gmail.com</p>
+                <div class="password" style="margin-left: 70px;">
+                    <input type="password" value="rs;track">
+                    <i class="fas fa-eye" style="margin-left: 2px;"></i>
+                </div>
+            </div>
+            <div class="dropdown">
+                <i class="fas fa-ellipsis-v" style="margin-bottom: 20px;"></i>
+                <div class="dropdown-content">
+                    <a href="#">Delete User</a>
+                    <a href="./Reset-Password.html">Change Password</a>
+                    <a href="#">Deactivate</a>
+                </div>
+            </div>
+        </div>
+        <div class="user-box">
+            <img src="./Images/profile2.jpeg" alt="Profile Picture" style="margin-right: 50px;">
+            <div class="user-details">
+                <p style="margin-right: 50px;">RS1234</p>
+                <p style="margin-right: 50px;">Administrator</p>
+                <p style="margin-right: 50px;">rs1chukwudimma@gmail.com</p>
+                <div class="password" style="margin-left: 70px;">
+                    <input type="password" value="rs;track">
+                    <i class="fas fa-eye" style="margin-left: 2px;"></i>
+                </div>
+            </div>
+            <div class="dropdown">
+                <i class="fas fa-ellipsis-v" style="margin-bottom: 20px;"></i>
+                <div class="dropdown-content">
+                    <a href="#">Delete User</a>
+                    <a href="./Reset-Password.html">Change Password</a>
+                    <a href="#">Deactivate</a>
+                </div>
+            </div>
+    </div>
+
+    <div class="user-box">
+        <img src="./Images/profile3.jpeg" alt="Profile Picture" style="margin-right: 50px;">
+        <div class="user-details">
+            <p style="margin-right: 50px;">RS1234</p>
+            <p style="margin-right: 50px;">Administrator</p>
+            <p style="margin-right: 50px;">rs1chukwudimma@gmail.com</p>
+            <div class="password" style="margin-left: 70px;">
+                <input type="password" value="rs;track">
+                <i class="fas fa-eye" style="margin-left: 2px;"></i>
+            </div>
+        </div>
+        <div class="dropdown">
+            <i class="fas fa-ellipsis-v" style="margin-bottom: 20px;"></i>
+            <div class="dropdown-content">
+                <a href="#">Delete User</a>
+                <a href="./Reset-Password.html">Change Password</a>
+                <a href="#">Deactivate</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="user-box">
+        <img src="./Images/profile4.jpeg" alt="Profile Picture" style="margin-right: 50px;">
+        <div class="user-details">
+            <p style="margin-right: 50px;">RS1234</p>
+            <p style="margin-right: 50px;">Administrator</p>
+            <p style="margin-right: 50px;">rs1chukwudimma@gmail.com</p>
+            <div class="password" style="margin-left: 70px;">
+                <input type="password" value="rs;track">
+                <i class="fas fa-eye" style="margin-left: 2px;"></i>
+            </div>
+        </div>
+        <div class="dropdown">
+            <i class="fas fa-ellipsis-v" style="margin-bottom: 20px;"></i>
+            <div class="dropdown-content">
+                <a href="#">Delete User</a>
+                <a href="./Reset-Password.html">Change Password</a>
+                <a href="#">Deactivate</a>
+            </div>
+        </div>
+    <script>
+        // JavaScript for password toggle
+        const passwordFields = document.querySelectorAll('.password input');
+        const eyeIcons = document.querySelectorAll('.password i');
+
+        eyeIcons.forEach((icon, index) => {
+            icon.addEventListener('click', () => {
+                const fieldType = passwordFields[index].getAttribute('type');
+                if (fieldType === 'password') {
+                    passwordFields[index].setAttribute('type', 'text');
+                    icon.classList.remove('fa-eye');
+                    icon.classList.add('fa-eye-slash');
+                } else {
+                    passwordFields[index].setAttribute('type', 'password');
+                    icon.classList.remove('fa-eye-slash');
+                    icon.classList.add('fa-eye');
+                }
+            });
+        });
+
+        // JavaScript for dropdown menu
+        const dropdowns = document.querySelectorAll('.dropdown');
+
+        dropdowns.forEach(dropdown => {
+            const content = dropdown.querySelector('.dropdown-content');
+            dropdown.addEventListener('click', () => {
+                content.style.display = content.style.display === 'block' ? 'none' : 'block';
+            });
+        });
+    </script>
+</body>
+</html>

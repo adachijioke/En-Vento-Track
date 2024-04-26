@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- <link rel="stylesheet" href="../CSS/styles.css"> -->
+
+    <style>
+    body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color:  #A1CAF1;
+}
+ 
+header {
+   
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    /* border-bottom: 8px solid #A1CAF1; */
+    background-color: #fff;
+    border-bottom:  #A1CAF1;
+    height: 70px;
+    /* position: fixed; */
+    z-index: 1000; /* Ensure the header appears above other content */
+}
+
+.logo img {
+    height: 30vh;
+}
+ 
+.user-profile {
+    display: flex;
+    align-items: center;
+}
+ 
+.user-profile i {
+    font-size: 20px;
+    margin-right: 10px;
+    border-radius: 50%;
+    background-color: #A1CAF1;
+    color: #126180;
+    padding: 10px;
+    cursor: pointer;
+}
+ 
+.user-profile .user-initials {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: purple;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    margin-left: 8px;
+}
+ 
+ 
+.sidebar {
+    width: 250px;
+    height: 900px;
+    /* border-right: 10px solid #A1CAF1; */
+    background: #fff;
+    float: left;
+}
+.sidebar li{
+    padding: 15px 15px;
+    font-size: 15px;
+    list-style: none;  
+}
+.sidebar li a {
+    text-decoration: none;
+    color: #126180;
+    display: block;
+}
+.sidebar li a:hover{
+    background: #A1CAF1;
+    border-radius: 5px;
+    padding: 5px 5px;
+    transition: 0.5s all;
+}
+.sidebar li a:active{
+    color: #4C516D;
+}
+ 
+.product-actions {
+  display: flex; 
+  align-items: center;
+  justify-items: left;
+  margin-bottom: 20px; 
+  background-color: #fff;
+  padding: 20px;
+}
+
+.view-products {
+  margin-right: 20px; 
+  font-weight: bold; 
+}
+
+.search-bar {
+  padding: 5px 10px; 
+  border: 1px solid #ccc; 
+  border-radius: 3px; 
+  margin-right: 10px; 
+}
+
+.search-icon {
+  margin-right: 5px; /* Add some margin to the right of the icon */
+}
+
+.add-product {
+  background-color: #4CAF50;
+  color: white; 
+  padding: 5px 10px; 
+  border: none; 
+  border-radius: 3px; 
+  cursor: pointer; 
+}
+
+.add-product:hover {
+  background-color: #3e8e41;
+}
+
+.content {
+    margin-left: 250px;
+    padding: 40px;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 20px;
+}
+
+.product-card {
+    background-color: #fff;
+    display: flex;
+    flex-direction: row;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    text-align: center;
+    overflow: hidden; /* Ensure the image doesn't overflow */
+}
+.product-card ul {
+    list-style: none;
+    color: #126180;
+}
+
+.product-card img {
+    width: 60%; /* Take half of the product card width */
+    border-radius: 5px 0 0 5px;
+}
+
+.product-info {
+    width: 30%; 
+    box-sizing: border-box; 
+}
+
+.product-title {
+    font-size: 1.2em;
+    margin-bottom: 5px;
+}
+
+.product-description {
+    font-size: 0.9em;
+    margin-top: 0; /* Remove default margin */
+}
+
+
+.action-button {
+    text-align: center;
+}
+
+.action-buttons-add {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.action-buttons-add:hover {
+    background-color: #fff;
+}
+
+.action-buttons-add i {
+    margin-right: 5px;
+}
+
+.action-buttons button {
+    margin-left: 10px;
+}
+.action-buttons-add{
+    background-color: orange;
+    color: #126180;
+    font-weight: bold;
+    border: 2px solid orange;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+.action-buttons-sales{
+    background-color: white;
+    color: #126180;
+    font-weight: bold;
+    border: 2px solid orange;
+    padding: 15px;
+}
+/* Ensure only 3 cards per row */
+@media screen and (max-width: 800px) {
+    .container {
+        grid-template-columns: repeat(2, 1fr); /* Two cards per row for smaller screens */
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .container {
+        grid-template-columns: 1fr; /* One card per row for even smaller screens */
+    }
+}
+
+
+
+</style>
+
+</head>
+<body>
+
+    <div class="bodycontainer">
+        <header>
+            <div class="logo">
+                <img src="./Images/icons/en-vento-track.png" alt="Company Logo">
+            </div>
+            <div class="user-profile">
+                <a href="./search"><i class="fas fa-search"></i></a>
+                <a href="./Notification.html"><i class="fas fa-bell"></i></a>
+                <div class="user-initials">RS</div>
+            </div>
+        </header>
+
+
+        <div id="underheader" style="background-color:  #A1CAF1; width: 20px; height: 20px;"></div>
+
+        <div class="product-actions">
+            <span class="view-products">View Products <i class="fas fa-angle-down"></i></span>
+            <input type="text" class="search-bar" placeholder="Search">
+            <i class="fas fa-search search-icon"></i>
+            <button class="add-product"><i class="fas fa-plus"></i> Add Product</button>
+        </div>
+          
+    
+        <div class="sidebar">
+            <ul>
+                <li><a href="./Dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href=""><i class="fas fa-box"></i> Products</a></li>
+                <li><a href="./Sales-report.html"><i class="fas fa-chart-pie"></i> Reports</a></li>
+                <li><a href="./"><i class="fas fa-shopping-cart"></i> Orders</a></li>
+                <li><a href=""><i class="fas fa-dollar-sign"></i> Sales</a></li>
+                <li><a href="./Record-item.html"><i class="fas fa-plus"></i> Add Products</a></li>
+                <li><a href=""><i class="fas fa-users"></i> Manage Users</a></li>
+                <li><a href=""><i class="fas fa-cog"></i> Settings</a></li>
+                <li><a href="./Contact-us.html"><i class="fas fa-question-circle"></i> Need Support?</a></li>
+                <li><a href="./Terms-and-Conditions.html"><i class="fas fa-file-alt"></i> Terms and Conditions</a></li>
+                <li><a href=""><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+        </div>
+
+        <div class="container">
+            <!-- Product cards will be dynamically added here -->
+            <div class="product-card">
+                <img src="./Images/cloth1.jpeg" alt="Product Image">
+                <div class="product-info">
+                    <ul>
+                        <li style="font-weight: bold;">Cost price: N15,000</li>
+                        <li style="font-weight: bold;">Selling price: N25,000</li>
+                        <li>Stocked</li>
+                        <li>50 Remaining</li>
+                    </ul>
+                </div>
+            </div>
+            
+
+            <div class="product-card">
+                <img src="./Images/jewel1.jpeg" alt="Product Image">
+                <div class="product-info">
+                    <ul>
+                        <li style="font-weight: bold;">Cost price: N15,000</li>
+                        <li style="font-weight: bold;">Selling price: N25,000</li>
+                        <li>Stocked</li>
+                        <li>50 Remaining</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <img src="./Images/jewel2.jpeg" alt="Product Image">
+                <div class="product-info">
+                    <ul>
+                        <li style="font-weight: bold;">Cost price: N15,000</li>
+                        <li style="font-weight: bold;">Selling price: N25,000</li>
+                        <li>Stocked</li>
+                        <li>50 Remaining</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <img src="./Images/jewel3.jpg" alt="Product Image">
+                <div class="product-info">
+                    <ul>
+                        <li style="font-weight: bold;">Cost price: N15,000</li>
+                        <li style="font-weight: bold;">Selling price: N25,000</li>
+                        <li>Stocked</li>
+                        <li>50 Remaining</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <img src="./Images/shoe2.jpeg" alt="Product Image">
+                <div class="product-info">
+                    <ul>
+                        <li style="font-weight: bold;">Cost price: N15,000</li>
+                        <li style="font-weight: bold;">Selling price: N25,000</li>
+                        <li>Stocked</li>
+                        <li>50 Remaining</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <img src="./Images/bag1.jpeg" alt="Product Image">
+                <div class="product-info">
+                    <ul>
+                        <li style="font-weight: bold;">Cost price: N15,000</li>
+                        <li style="font-weight: bold;">Selling price: N25,000</li>
+                        <li>Stocked</li>
+                        <li>50 Remaining</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <img src="./Images/bag2.jpeg" alt="Product Image">
+                <div class="product-info">
+                    <ul>
+                        <li style="font-weight: bold;">Cost price: N15,000</li>
+                        <li style="font-weight: bold;">Selling price: N25,000</li>
+                        <li>Stocked</li>
+                        <li>50 Remaining</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <img src="./Images/shoe1.jpeg" alt="Product Image">
+                <div class="product-info">
+                    <ul>
+                        <li style="font-weight: bold;">Cost price: N15,000</li>
+                        <li style="font-weight: bold;">Selling price: N25,000</li>
+                        <li>Stocked</li>
+                        <li>50 Remaining</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="action-button">
+            <a href="./Item.html"><button class="action-buttons-add"><i class="fas fa-plus"></i> Add Product</button></a>
+        </div>
+   
+</body>
+</html>

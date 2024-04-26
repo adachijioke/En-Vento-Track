@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>En-vento Track Application</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-MkDqhp4jXOg5f1yXQx3MTng6r/UVggl3gFm+iyfKeOVp9TRQbL3QSBxIRfNl2VW2W8/+9fzDji9CtT9xVwDWeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    </head>
+    <style>
+        ::-webkit-scrollbar {
+            display: none;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+        }
+
+        .highlight {
+            color: rgb(255, 204, 0);
+        }
+    
+        footer {
+            background-color: #5c7341;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+        }
+        #img {
+            background: url(./Images/qrcode.jpeg);
+            height: 66vh;
+            background-repeat: no-repeat;
+            background-size: cover;
+            margin: 0;
+            background-position: center center;
+        }
+        a {
+            text-decoration: none;
+            display: inline-block;
+            padding: 8px 18px;
+            
+        }
+
+        a:hover {
+            background-color: rgb(230, 185, 52);
+            color: black;
+        }
+
+        .previous {
+            background-color: #978c8c;
+            color: #ddd;
+            float: right; 
+        }
+
+        .next {
+            background-color: #978c8c;
+            color: white;
+            float: right;
+        }
+
+        .round {
+            border-radius: 15px;
+        }
+
+        #info {
+            max-width: 620px;
+            margin: 0 auto;
+            padding: 40px 0 40px 0;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .body {
+            font-size: 16px;
+            margin-bottom: 20px;
+            color: #565430;
+            text-align: center;
+        }
+    </style>
+
+    <body>
+        <div id="img"></div>
+        <main>
+            <section>
+                <div id="info">
+                    <h1>Track your Business Income and Expenses.</h1>
+                    <p class="body">With  <span class="highlight">En-Vento Track</span>, you can effortlessly <span class="highlight">Track</span> and  <span class="highlight">Manage</span> your inventory  <span class="highlight">Anytime, Anywhere.</span> Bid farewell to manual counts and paperwork.</p>
+
+
+                    <div style="display: flex; justify-content: space-between; margin: 10px;">
+                        <a>Skip</a>
+                        <div style="display: flex; gap: 20px;">
+                            <div class="pdiv">
+                                <a href="./Welcome.html" class="previous round">&#8249;</a>
+                            </div>
+                            <div class="pdiv">
+                                <a href="./Upgrade-with-code.html" class="next round">&#8250;</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+
+    </body>
+</html>

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In</title>
+    <style>
+        ::-webkit-scrollbar {
+            display: none;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f6f0f0;
+            margin: 0;
+            overflow: hidden;
+            padding-top: 10%;
+            padding-bottom: 10%;
+        }
+
+        header {
+        display: flex;
+        align-items: center;      
+        position: fixed;         
+        top: 0;                 
+        left: 0;                   
+        width: 100%;                
+        height: 70px;              
+        background-color: #f5f5f5; 
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+        }
+
+        header img {
+        height: 200px;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        input[type="email"],
+        input[type="tel"],
+        input[type="name"],
+        input[type="submit"],
+        button.social-button {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            border-color: #f5e90d;
+            box-sizing: border-box;
+            background-color: #f6f0f0;
+            color: #126180;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        input[type="submit"] {
+            background-color: #126180;
+            color: #fff;
+        }
+
+        input[type="submit"]:hover,
+        button.social-button:hover {
+            background-color: #457b47;
+            color: #fff;
+        }
+
+            .profile-picture-container {
+        display: inline-block;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 10px;
+        cursor: pointer;
+        position: relative;
+        }
+
+        .picture-box {
+        width: 100px;
+        height: 100px;
+        background-color: #eee;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 2em;
+        color: #999;
+        }
+
+        .upload {
+        font-size: 1em;
+        color: #1f1b1b; 
+        padding: 20px; 
+        }
+
+        .picture-box p {
+        margin: 0;
+        }
+
+        .profile-picture-container:hover .picture-box {
+        background-color: #ddd;
+        }
+
+        #profile-picture-input {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        }
+
+        .file-size-info {
+        font-size: 0.8em;
+        color: #aaa;
+        margin-top: 5px;
+        }
+
+ /* Additional styles for image preview */
+ .selected-image {
+            max-width: 100px;
+            max-height: 100px;
+            margin-top: 10px;
+        }
+
+        .cancel-upload {
+            margin-top: 10px;
+            color: #ff0000;
+            cursor: pointer;
+        }
+       h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <img src="./Images/icons/en-vento-track.png" alt="Logo">
+      </header>
+
+    <div class="container">
+        <h1>Business profile</h1>
+
+        <form action="Dashboard.html" method="post" onsubmit="return validateForm()">
+            <input type="name" id="name" name="name" placeholder="Business name" required>
+            <input type="tel" id="phone-number" name="phone-number" placeholder="Business phone no">
+            <input type="email" id="email" name="email" placeholder="Business Email" required>
+
+            <div class="upload">
+               Upload Business Logo or profile picture
+            </div>
+
+            <div class="profile-picture-container">
+                <div class="picture-box" id="profile-picture-box">
+                    <img class="selected-image" id="selectedImage" src="#" alt="Image">
+                  <i class="material-icons"></i>
+
+                </div>
+                <input type="file" id="profile-picture-input" accept="image/*" hidden>
+                <p class="file-size-info">Max size: 5MB</p>
+                <span class="cancel-upload" id="cancelUpload" style="display: none;">Cancel</span>
+              </div>
+
+            <a href="./Dashboard.html"><input type="submit" value="Save Profile"></a>
+     
+            </button>
+        </form>
+    </div>
+
+    <script>
+
+    const profilePictureBox = document.getElementById('profile-picture-box');
+        const profilePictureInput = document.getElementById('profile-picture-input');
+        const selectedImage = document.getElementById('selectedImage');
+        const cancelUpload = document.getElementById('cancelUpload');
+
+        profilePictureBox.addEventListener('click', () => {
+            profilePictureInput.click();
+        });
+
+        profilePictureInput.addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            if (file && file.size > 5 * 1024 * 1024) {
+                alert('Error: File size exceeds 5MB limit!');
+                profilePictureInput.value = ''; // Clear file selection
+            } else {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    selectedImage.src = e.target.result;
+                    selectedImage.style.display = 'block';
+                    cancelUpload.style.display = 'inline';
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        cancelUpload.addEventListener('click', () => {
+            selectedImage.src = '#';
+            selectedImage.style.display = 'none';
+            cancelUpload.style.display = 'none';
+            profilePictureInput.value = ''; // Clear file selection
+        });
+
+        // JavaScript code for form validation and submission
+        const profileForm = document.getElementById('profileForm');
+        profileForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the form from submitting normally
+
+            // Collect form data
+            const formData = new FormData(profileForm);
+
+            // Send form data to the server using fetch API or XMLHttpRequest
+            fetch('save_profile.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (response.ok) {
+                    return response.text();
+                }
+                throw new Error('Network response was not ok.');
+            })
+            .then(data => {
+                // Handle the response data
+                console.log(data);
+            })
+            .catch(error => {
+                console.error('There was a problem with the fetch operation:', error);
+            });
+        });
+    </script>
+</body>
+</html>

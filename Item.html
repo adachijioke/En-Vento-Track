@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Item page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+    ::-webkit-scrollbar {
+        display: none;
+    }
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f6f6f6;
+    }
+
+    header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    border-bottom: 8px solid #A1CAF1;
+    height: 50px;
+        }
+        .logo img {
+        height: 30vh;
+        }
+
+        .user-profile {
+        display: flex;
+        align-items: center;
+        }
+
+        .user-profile i {
+        font-size: 20px;
+        margin-right: 10px;
+        border-radius: 50%;
+        background-color: #A1CAF1;
+        color: #126180;
+        padding: 10px;
+        cursor: pointer;
+        }
+
+        .user-profile .user-initials {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: purple;
+        color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 18px;
+        margin-left: 8px;
+        }
+
+        .formdiv {
+            padding: 80px 20px 80px 20px;
+        }
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        form h3 {
+            margin-top: 0;
+            font-size: 20px;
+            color: #333;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="file"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 15px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            width: 95%;
+            padding: 10px;
+            margin: 10px 0;
+            background-color: rgb(230, 185, 52);
+            color: #fff;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: rgb(236, 192, 138);
+        }
+
+        .menu {
+            position: fixed;
+            top: 0;
+            left: -250px;
+            width: 250px;
+            height: 100%;
+            background-color: #333;
+            color: #fff;
+            transition: 0.3s ease;
+        }
+
+        .menu ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .menu ul li {
+            padding: 10px;
+            border-bottom: 1px solid #444;
+        }
+
+        .menu ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+
+        #closeMenuBtn {
+            background-color: rgb(230, 185, 52);
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+
+        #closeMenuBtn:hover {
+            background-color: rgb(236, 192, 138);
+        }
+        /* Styling for the QR Code Scanner */
+        #qrScanner {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        #qrVideo {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            border: 1px auto;
+            border-radius: 5px;
+        }
+
+
+        #qrScanner {
+            text-align: center;
+        }
+
+        .scanner-container {
+            position: relative;
+            width: 300px; 
+            height: 150px; 
+            margin: 0 auto;
+            overflow: hidden; 
+            border: 2px solid #676565; 
+            border-radius: 15px; 
+        }
+
+        #qrVideo {
+            width: 100%;
+            height: 100%;
+        }
+
+        #qrScannerBtn {
+            margin-top: 10px;
+            padding: 10px 20px; 
+            background-color: rgb(230, 185, 52); 
+            color: #fff; 
+            border: none; 
+            border-radius: 5px; 
+            cursor: pointer; 
+        }
+
+        #qrScannerBtn:hover {
+            background-color: rgb(236, 192, 138); 
+        }
+
+        #logo {
+            font-size: xx-large;
+        }
+        </style>
+
+
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="./Images/icons/en-vento-track.png" alt="Company Logo">
+        </div>
+        <div class="user-profile">
+            <a href="./search"><i class="fas fa-search"></i></a>
+            <a href="./Notification.html"><i class="fas fa-bell"></i></a>
+            <div class="user-initials">RS</div>
+        </div>
+       
+    </header>
+    
+    <div class="formdiv">
+        <form action="#" method="post">
+            <h3>Record a new item</h3>
+            <input type="text" name="name" placeholder="Item name" required>
+            <input type="text" name="description" placeholder="Item description" required>
+            <input type="number" name="cost_price" placeholder="Cost Price" required>
+            <input type="number" name="selling_price" placeholder="Selling Price" required>
+            
+            <a href="./Added-Items.html"><input type="submit" value="Add Item"></a>
+
+            <!-- Upload Picture -->
+            <div class="file">
+                <label for="photo" aria-required=""></i>Upload a picture</label> 
+                <input type="file" id="photo" name="photo" accept="image/*" img src="./Images/icons/icons8-image-64.png" alt="image"> 
+            </div>
+            <!-- Upload Files
+            <label for="files">Upload Files:</label>
+            <input type="file" id="files" name="files" multiple>-->
+
+            <!-- QR Code Scanner-->
+            <div id="qrScanner">
+                <div class="scanner-container">
+                    <video id="qrVideo" width="100%" height="100%" autoplay></video>
+                </div>
+                <button id="qrScannerBtn" onclick="openCamera()">Scan QR Code</button>
+            </div>
+        </form>
+    </div>
+
+    
+        
+        <a href="#" id="openMenuBtn"> <!-- Added ID for the anchor tag -->
+            <img src="./Images/icons/icons8-menu-24.png" alt="menu icon">
+        </a>
+        <!-- Include the menu HTML structure here -->
+        <div id="menu" class="menu">
+            <button id="closeMenuBtn">Close Menu</button>
+            <ul>
+                <li><a href="./Account.html">Account</a></li>
+                <li><a href="./Contact-us.html">Contact us</a></li>
+                <li><a href="./Dashboard.html">Dashboard</a></li>
+                <li><a href="./Item.html">Items</a></li>
+                <li><a href="./Notification.html">Notifications</a></li>
+                <li><a href="./Record-item.html">Record item</a></li>
+                <li><a href="./Reset-Password.html">Reset password</a></li>
+                <li><a href="./Sales-report.html">Sales report</a></li>
+                <li><a href="./Summary-of-items.html.html">Summary of Items</a></li>
+                <li><a href="./Terms-and-Conditions.html">Terms and condition</a></li>
+                <li><a href="#">Log out</a></li>
+                <li><a href="#">Settings</a></li>
+            </ul>
+        </div>
+    </footer>
+    
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Get references to the menu and menu button
+            const menu = document.getElementById('menu');
+            const openMenuBtn = document.querySelector('footer img');
+
+            // Event listener for opening the menu
+            openMenuBtn.addEventListener('click', function () {
+                menu.style.left = '0';
+            });
+
+            // Event listener for closing the menu
+            document.getElementById('closeMenuBtn').addEventListener('click', function () {
+                menu.style.left = '-250px';
+            });
+        });
+
+
+    // QR Code Scanner Script
+    
+       
+       document.getElementById("openMenuBtn").addEventListener("click", function() {
+            document.getElementById("menu").style.left = "0";
+        });
+
+        document.getElementById("closeMenuBtn").addEventListener("click", function() {
+            document.getElementById("menu").style.left = "-250px";
+        });
+
+    const qrScanner = document.getElementById('qrScanner'); 
+        const qrVideo = document.getElementById('qrVideo');
+
+            // Check if browser supports getUserMedia
+            if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+                navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } })
+                    .then(function(stream) {
+                        qrVideo.srcObject = stream;
+                        qrScanner.style.display = 'block'; // Show scanner if getUserMedia is successful
+                    })
+                    .catch(function(error) {
+                        console.error('Error accessing camera:', error);
+                    });
+            } else {
+                console.error('getUserMedia not supported on your browser');
+            }
+
+    document.addEventListener('DOMContentLoaded', function () {
+    const qrVideo = document.getElementById('qrVideo');
+    const qrScannerBtn = document.getElementById('qrScannerBtn');
+
+
+    // Function to open camera and start scanning
+    function openCamera() {
+        navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
+            .then(function (stream) {
+            qrVideo.srcObject = stream;
+            qrVideo.play();
+            qrScannerBtn.style.display = 'none'; // Hide the button when camera is active
+            startScan();
+        })
+        .catch(function (err) {
+            console.error('Error accessing camera: ', err);
+        });
+    }
+
+    // Function to start scanning for QR codes
+    function startScan() {
+        const canvas = document.createElement('canvas');
+        const context = canvas.getContext('2d');
+
+        const scanInterval = setInterval(() => {
+            if (qrVideo.readyState === qrVideo.HAVE_ENOUGH_DATA) {
+                canvas.width = qrVideo.videoWidth;
+                canvas.height = qrVideo.videoHeight;
+                context.drawImage(qrVideo, 0, 0, canvas.width, canvas.height);
+                const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+                const code = jsQR(imageData.data, canvas.width, canvas.height);
+                
+                if (code) {
+                    clearInterval(scanInterval);
+                    // Handle the scanned QR code, for example:
+                    alert('QR Code detected: ' + code.data);
+                }
+            }
+        }, 100);
+    }
+
+    // Event listener for scanning button click
+    qrScannerBtn.addEventListener('click', openCamera);
+
+    
+
+
+document.getElementById("openMenuBtn").addEventListener("click", function() {
+    document.getElementById("menu").style.left = "0";
+});
+
+document.getElementById("closeMenuBtn").addEventListener("click", function() {
+    document.getElementById("menu").style.left = "-250px";
+});
+});
+
+</script>
+
+</body>
+</html>

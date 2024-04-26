@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>En-vento Track Application</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-MkDqhp4jXOg5f1yXQx3MTng6r/UVggl3gFm+iyfKeOVp9TRQbL3QSBxIRfNl2VW2W8/+9fzDji9CtT9xVwDWeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<style>
+    /* CSS styles */
+    ::-webkit-scrollbar {
+        display: none;
+    }
+
+    #loader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgb(255, 204, 0);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+    }
+    
+    .highlight {
+            color: rgb(255, 204, 0);
+        }
+    
+    footer {
+        background-color: #5c7341;
+        color: #fff;
+        text-align: center;
+        padding: 10px;
+    }
+    #image {
+        background: url(./Images/Welcome-image.jpg);
+        height: 66vh;
+        background-repeat: no-repeat;
+        background-size: cover;
+        margin: 0;
+        background-position: center center;
+    }
+    a {
+        text-decoration: none;
+        display: inline-block;
+        padding: 8px 18px;
+        
+    }
+
+    a:hover {
+        background-color: rgb(230, 185, 52);
+        color: black;
+    }
+
+    .previous {
+        background-color: #978c8c;
+        color: #ddd;
+        float: right; 
+    }
+
+    .next {
+        background-color: #978c8c;
+        color: white;
+        float: right; 
+    }
+
+    .round {
+        border-radius: 15px;
+    }
+
+    #info {
+        max-width: 620px;
+        margin: 0 auto;
+        padding: 40px 0 40px 0;
+    }
+
+    h1 {
+        font-size: 24px;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+
+    .body {
+        font-size: 16px;
+        margin-bottom: 20px;
+        color: #565430;
+        text-align: center;
+    }
+
+    #loader img {
+        margin-right: 5px; 
+        margin-bottom: -10px;
+    }
+
+    #loader span {
+        margin-top: -10px;
+    }
+</style>
+</head>
+<body>
+
+<div id="loader">
+    <img src="./Images/icons/en-vento-track.png" alt=""> 
+</div>
+
+<div id="image"></div>
+<main>
+    <section>
+        <div id="info">
+            <h1>Welcome to En-Vento Track.</h1>
+            <p class="body">Our mission is to help millions of <span class="highlight">MSME</span> in Nigeria and <span class="highlight">Africa</span> to manage and grow their <span class="highlight">businesses</span> through a flexible suite of business tools.</p>
+
+
+            <div style="display: flex; justify-content: space-between; margin: 10px;">
+                <a>Skip</a>
+
+                <div style="display: flex; gap: 20px;">
+                    <div class="pdiv">
+                        <a href="./Track-your-business.html" class="previous round">&#8249;</a>
+                    </div>
+                    <div class="pdiv">
+                        <a href="./Track-your-business.html" class="next round">&#8250;</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2024 My Website. All rights reserved.</p>
+</footer>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        setTimeout(function() {
+            document.getElementById("loader").style.display = "none";
+            document.getElementById("content").style.display = "block";
+        }, 2000);
+    });
+</script>
+</body>
+</html>

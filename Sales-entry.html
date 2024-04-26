@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Product</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> <!-- Font Awesome for icons -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+      header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px; /* Increased padding */
+    background: linear-gradient(135deg, #126180, #0c435b); /* Gradient background */
+    color: #fff;
+    font-family: Arial, sans-serif;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+}
+
+.logo img {
+    height: 40px; /* Adjusted logo size */
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+}
+
+.user-profile i {
+    font-size: 24px; /* Increased icon size */
+    margin-right: 10px; /* Adjusted margin for icons */
+    cursor: pointer; /* Added cursor pointer */
+}
+
+.user-profile .user-initials {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: purple;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    margin-left: 8px;
+    cursor: pointer; /* Added cursor pointer */
+}
+
+.user-profile .user-initials:hover,
+.user-profile i:hover {
+    opacity: 0.8; /* Reduced opacity on hover */
+}
+
+        form {
+            /* display: grid; */
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        input[type="text"],
+        input[type="number"] {
+            width: calc(100% - 10px);
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .units-sold {
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+            color: #333;
+            margin-top: 10px;
+        }
+        .units-sold i {
+            margin-right: 5px;
+        }
+        .action-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .action-buttons button {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .action-buttons button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .action-buttons button:hover {
+            background-color: #ff8c00;
+        }
+        /* Dropdown arrow styling */
+        .select-arrow {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            pointer-events: none;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header><h1>Sales Entry</h1></header>
+    <form action="#" method="post">
+        <div style="position: relative;">
+            <input type="text" name="name" placeholder="Select Product" id="itemName" required>
+            <!-- Dropdown arrow icon -->
+            <i class="fas fa-caret-down select-arrow"></i>
+            <!-- Sample dropdown list (replace with your actual data) -->
+            <datalist id="products">
+                <option value="Product 1">
+                <option value="Product 2">
+                <option value="Product 3">
+            </datalist>
+        </div>
+        <div class="units-sold">
+            <i class="fas fa-dollar-sign"></i>
+            <span id="unitsSold">0</span>
+        </div>
+        <input type="number" name="selling_price" placeholder="Selling Price" required>
+        <input type="number" name="amount" placeholder="Enter Any Amount" required>
+        <input type="number" name="total" placeholder="Total" required>
+        
+        <!-- Generate Receipt button (hidden for now) -->
+        <button type="button" id="generateReceipt" style="display: none;">Generate Receipt</button>
+        <!-- Cancel button (initially disabled) -->
+        <button type="button" id="cancelButton" disabled>Cancel</button>
+    </form>
+
+    <div class="action-buttons">
+        <a href="./Item.html"><button><i class="fas fa-plus"></i> Save and continue</button></a>
+        <a href="./Record-item.html"><button><i class="fas fa-plus"></i> Save and Close</button></a>
+    </div>
+</div>
+
+<script>
+    // Function to enable/disable cancel button based on input fields
+    function checkInput() {
+        var productName = document.getElementById('itemName').value;
+        var cancelButton = document.getElementById('cancelButton');
+        if (productName.trim() !== '') {
+            cancelButton.disabled = false;
+        } else {
+            cancelButton.disabled = true;
+        }
+    }
+
+    // Function to populate units sold based on selected product
+    document.getElementById('itemName').addEventListener('change', function() {
+        var itemName = this.value;
+        var itemPrices = {
+            "Product 1": 10, // Replace "Product 1" with the actual name of the product and 10 with its price
+            "Product 2": 20,
+            "Product 3": 30,
+            // Add more products and their prices as needed
+        };
+        if (itemPrices[itemName] !== undefined) {
+            document.getElementById('unitsSold').textContent = itemPrices[itemName];
+        } else {
+            document.getElementById('unitsSold').textContent = '0';
+        }
+        checkInput(); // Check if cancel button should be enabled/disabled
+    });
+
+    // Function to automatically calculate total based on selling price and amount
+    document.querySelectorAll('input[name="selling_price"], input[name="amount"]').forEach(function(input) {
+        input.addEventListener('input', function() {
+            var sellingPrice = parseFloat(document.querySelector('input[name="selling_price"]').value) || 0;
+            var amount = parseFloat(document.querySelector('input[name="amount"]').value) || 0;
+            var total = sellingPrice * amount;
+            document.querySelector('input[name="total"]').value = total.toFixed(2);
+            checkInput(); // Check if cancel button should be enabled/disabled
+        });
+    });
+</script>
+
+</body>
+</html>
