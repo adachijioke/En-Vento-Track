@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Log Out Page</title>
+  <style>
+    body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f1f1f1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    }
+
+    .container {
+    text-align: center;
+    background-color: #fff;
+    padding: 50px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    }
+
+    h4 {
+    color: #333;
+    }
+
+    button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #126180;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin: 0 10px;
+    }
+
+    button:hover {
+    background-color: #90959b;
+    }
+
+</style>
+</head>
+<body>
+  <div class="container">
+    <h4>Are you sure you want to log out?</h4>
+    <button id="yesBtn">Yes</button>
+    <button id="noBtn">No</button>
+  </div>
+
+  <script>
+
+    document.getElementById('yesBtn').addEventListener('click', function() {
+      // Redirect to sign-up page
+      alert('You have been logged out!');
+      window.location.href = 'Sign_Up.html';
+    });
+
+    document.getElementById('noBtn').addEventListener('click', function() {
+      // Redirect back to previous page
+      history.back();
+    });
+  </script>
+</body>
+</html>

@@ -12,14 +12,7 @@
             margin: 0;
             padding: 0;
         }
-        .container {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
+
         header {
             text-align: center;
             margin-bottom: 20px;
@@ -29,14 +22,22 @@
             border-radius: 5px;
             background-color: #126180;
         }
+
         form {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 10px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
+
         input[type="text"],
         input[type="number"],
-        input[type="file"] {
+        input[type="file"],
+        input[type="date"],
+        input[type="time"] {
             width: calc(100% - 10px);
             padding: 10px;
             border: 1px solid #ccc;
@@ -44,17 +45,21 @@
             margin-right: 20px;
             margin-block: 10px;
         }
+
         .file {
             margin-top: 20px;
         }
+
         .file label {
             display: block;
             margin-bottom: 5px;
         }
+
         #qrScanner {
             text-align: center;
             margin-top: 20px;
         }
+
         #qrScannerBtn {
             padding: 10px 20px;
             background-color: orange;
@@ -63,77 +68,79 @@
             border-radius: 5px;
             cursor: pointer;
         }
+
         #qrVideo {
             width: 100%;
             height: auto;
         }
+
         .action-buttons {
             display: flex;
             justify-content: space-between;
             margin-top: 20px;
+            padding: 0 20px;
         }
- 
+
         .action-buttons button {
             padding: 15px 30px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            transition: background-color 0.3s;
+            background-color: #126180;
         }
+
         .action-buttons button:hover {
-            background-color: orange;
+            background-color: #94bcca;
+            transition: 0.3s;
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <header><h1>Add Product</h1></header>
-    <form action="#" method="post">
-        <input type="text" name="name" placeholder="Item name" id="itemName" required>
-        <input type="text" name="description" placeholder="Item description" required>
-        <input type="number" name="cost_price" placeholder="Cost Price" id="costPrice" required>
-        <input type="number" name="selling_price" placeholder="Selling Price" required>
-        
-        <!-- Quantity (units) -->
-        <div>Quantity (units)</div>
+<header><h1>Add Product</h1></header>
+<form action="#" method="post">
+    <input type="text" name="name" placeholder="Item name" id="itemName" required>
+    <input type="text" name="description" placeholder="Item description" required>
+    <input type="number" name="cost_price" placeholder="Cost Price" id="costPrice" required>
+    <input type="number" name="selling_price" placeholder="Selling Price" required>
+    
+    <!-- Quantity (units) -->
+    <div>Quantity (units)</div>
 
-        <!-- Upload Picture -->
-        <div class="file">
-            <label for="photo">Upload a picture</label> 
-            <input type="file" id="photo" name="photo" accept="image/*">
-        </div>
-
-        <!-- Upload Files -->
-        <div class="file">
-            <label for="files">Upload Files:</label>
-            <input type="file" id="files" name="files" multiple>
-        </div>
-
-        <!-- QR Code Scanner-->
-        <div id="qrScanner">
-            <div class="scanner-container">
-                <video id="qrVideo" width="100%" height="100%" autoplay></video>
-            </div>
-            <button id="qrScannerBtn" onclick="openCamera()">Scan barcode (Optional)</button>
-        </div>
-
-        <!-- Date and Time -->
-        <div>
-            <label for="date">Date:</label>
-            <input type="date" id="date" name="date">
-        </div>
-        <div>
-            <label for="time">Time:</label>
-            <input type="time" id="time" name="time">
-        </div>
-    </form>
-
-    <div class="action-buttons">
-            <a href="./Item.html"><button><i class="fas fa-plus"></i> Add Product</button></a>
-            <a href="./Record-item.html"><button><i class="fas fa-plus"></i> Save and continue</button></a>
-       
+    <!-- Upload Picture -->
+    <div class="file">
+        <label for="photo">Upload a picture</label> 
+        <input type="file" id="photo" name="photo" accept="image/*">
     </div>
+
+    <!-- Upload Files -->
+    <div class="file">
+        <label for="files">Upload Files:</label>
+        <input type="file" id="files" name="files" multiple>
+    </div>
+
+    <!-- QR Code Scanner-->
+    <div id="qrScanner">
+        <div class="scanner-container">
+            <video id="qrVideo" width="100%" height="100%" autoplay></video>
+        </div>
+        <button id="qrScannerBtn" onclick="openCamera()">Scan barcode (Optional)</button>
+    </div>
+
+    <!-- Date and Time -->
+    <div>
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date">
+    </div>
+    <div>
+        <label for="time">Time:</label>
+        <input type="time" id="time" name="time">
+    </div>
+</form>
+
+<div class="action-buttons">
+    <a href="./Orders.html"><button><i class="fas fa-plus"></i> Add Product</button></a>
+    <a href=""><button><i class="fas fa-plus"></i> Save and continue</button></a>
 </div>
 
 <script>
@@ -159,9 +166,8 @@
     // Function to populate cost price based on item selection
     document.getElementById('itemName').addEventListener('change', function() {
         var itemName = this.value;
-        // You can have a predefined list of items with their prices, or fetch from a database
         var itemPrices = {
-            "item1": 10, // Replace "item1" with the actual name of the item and 10 with its price
+            "item1": 10, 
             "item2": 20,
             // Add more items and their prices as needed
         };
@@ -173,6 +179,25 @@
             document.getElementById('costPrice').value = '';
         }
     });
+        
+    const addProductBtn = document.getElementById('add-product-btn');
+        const saveContinueBtn = document.getElementById('save-continue-btn');
+
+        addProductBtn.addEventListener('click', () => {
+        // Handle adding the item information (implementation depends on your approach)
+        // You could gather the data from a form or use a separate function for adding items.
+        console.log('Adding item information...'); // Placeholder for now
+
+        // Redirect to Added-products.html
+        window.location.href = 'Added-products.html';
+        });
+
+        saveContinueBtn.addEventListener('click', () => {
+        // Handle saving the item and continuing (implementation depends on your approach)
+        // You could save the data and then potentially redirect to another page 
+        // or display a success message on the current page.
+        console.log('Saving and continuing...'); // Placeholder for now
+        });
 </script>
 
 </body>
