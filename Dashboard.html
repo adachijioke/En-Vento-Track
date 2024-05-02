@@ -6,206 +6,192 @@
     <title>Inventory Dashboard</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- <link rel="stylesheet" href="../CSS/styles.css"> -->
-
     <style>
-    body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    background-color: #A1CAF1;;
-}
- 
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    border-bottom: 8px solid #A1CAF1;
-    height: 50px;
-    background-color: #fff;
-}
-.logo img {
-    height: 30vh;
-}
- 
-.user-profile {
-    display: flex;
-    align-items: center;
-}
- 
-.user-profile i {
-    font-size: 20px;
-    margin-right: 10px;
-    border-radius: 50%;
-    background-color: #A1CAF1;
-    color: #126180;
-    padding: 10px;
-    cursor: pointer;
-}
- 
-.user-profile .user-initials {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: purple;
-    color: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 18px;
-    margin-left: 8px;
-}
- 
- 
-.sidebar {
-    width: 250px;
-    height: 100vh;
-    border-right: 10px solid #A1CAF1;
-    float: left;
-    background-color: #fff;
-}
-.sidebar li{
-    padding: 15px 15px;
-    font-size: 15px;
-    list-style: none;  
-}
-.sidebar li a {
-    text-decoration: none;
-    color: #126180;
-    display: block;
-}
-.sidebar li a:hover{
-    background: #A1CAF1;
-    border-radius: 5px;
-    padding: 5px 5px;
-    transition: 0.5s all;
-}
-.sidebar li a:active{
-    color: #4C516D;
-}
- 
-.content {
-    margin-left: 250px;
-    padding: 40px;
-}
- 
-.welcome-section {
-    color: #126180;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-    background-color: #fff;
-}
- 
-.action-buttons button {
-    margin-left: 10px;
-}
-.action-buttons-add{
-    background-color: orange;
-    color: #126180;
-    font-weight: bold;
-    border: 2px solid orange;
-    padding: 15px;
-    margin-bottom: 20px;
-}
-.action-buttons-sales{
-    background-color: white;
-    color: #126180;
-    font-weight: bold;
-    border: 2px solid orange;
-    padding: 15px;
-}
-.action-buttons-add:hover {
-    cursor: pointer;
-}
-.action-buttons-sales:hover {
-    cursor: pointer;
-}
-.summary-section {
-    margin-bottom: 30px;
-    color: #126180;
-    border-bottom:10px solid #A1CAF1;
-    background-color: #fff;
-}
- 
-.summary-item {
-    display: inline-block;
-    margin-right: 30px;
-}
- 
-.data-section {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 30px;
-    background-color: #fff;
-}
- 
-.stock-section, .sales-section {
-    flex: 1;
-    color: #126180;
-}
- 
- 
-.stock-section {
-    margin-bottom: 30px;
-    /* margin-right: 300px; */
-}
- 
-.stock-section div {
-    margin-bottom: 15px;
-    margin-right: 300px;
-}
- 
-.progress-bar {
-    width: 100%;
-    height: 20px; 
-    background-color: #126180;
-}
- 
-.activity-section {
-    margin-top: 30px;
-    
-}
- 
-#activityTable {
-    width: 100%;
-    border-collapse: collapse;
-}
- 
-#activityTable th, #activityTable td {
-    padding: 10px;
-    border: none;
-}
-/* Table styling */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
- 
-/* Table header styling */
-table th {
-    text-align: left; /* Align table headers to the left */
-    background-color: #f2f2f2;
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
-}
- 
-/* Table data styling */
-table td {
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
-}
- 
-/* Remove border from last table row */
-table tr:last-child td {
-    border-bottom: none;
-}
- 
- 
-/* Add more styles as needed */
+        /* CSS styles */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #A1CAF1;
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            border-bottom: 8px solid #A1CAF1;
+            background-color: #fff;
+        }
+        
+        .logo img {
+            height: 9vh;
+            width: 150px;
+        }
+        
+        .user-profile {
+            display: flex;
+            align-items: center;
+        }
+        
+        .user-profile i {
+            font-size: 20px;
+            margin-right: 10px;
+            border-radius: 50%;
+            background-color: #A1CAF1;
+            color: #126180;
+            padding: 10px;
+            cursor: pointer;
+        }
+        
+        .user-profile .user-initials {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: purple;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+            margin-left: 8px;
+        }
+        
+        .sidebar {
+            width: 250px;
+            height: 100vh;
+            border-right: 8px solid #A1CAF1;
+            background-color: #fff;
+            overflow-y: auto;
+            float: left; /* Added */
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+        
+        .sidebar li {
+            padding: 15px 20px;
+            font-size: 16px;
+            list-style: none;
+        }
+        
+        .sidebar li a {
+            text-decoration: none;
+            color: #126180;
+            display: block;
+        }
+        
+        .sidebar li a:hover {
+            background: #A1CAF1;
+            border-radius: 5px;
+            padding: 10px 20px;
+            transition: 0.5s all;
+        }
+        
+        .sidebar li a:active {
+            color: #4C516D;
+        }
+        
+        .content {
+            padding: 20px;
+            margin-left: 270px; /* Adjusted */
+        }
+        
+        .welcome-section {
+            color: #126180;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between; /* Align items to the sides */
+            align-items: center; /* Center items vertically */
+        }
+
+        .action-buttons button {
+        margin-left: 10px;
+        }
+        .action-buttons-add{
+        background-color: orange;
+        color: #126180;
+        font-weight: bold;
+        border: 2px solid orange;
+        padding: 15px;
+        margin-bottom: 20px;
+        }
+        .action-buttons-sales{
+        background-color: white;
+        color: #126180;
+        font-weight: bold;
+        border: 2px solid orange;
+        padding: 15px;
+        }
+        .action-buttons-add:hover {
+        cursor: pointer;
+        }
+        .action-buttons-sales:hover {
+        cursor: pointer;
+        }
+        
+        .summary-section {
+            margin-bottom: 30px;
+            color: #126180;
+            border-bottom: 8px solid #A1CAF1;
+            background-color: #fff;
+            padding: 20px;
+            /* display: grid; */
+        }
+        
+        .data-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+        
+        .stock-section,
+        .sales-section {
+            width: calc(50% - 20px);
+            margin-bottom: 20px;
+        }
+        
+        .stock-item {
+            margin-bottom: 15px;
+        }
+        
+        .stock-label {
+            display: inline-block;
+            width: 100px;
+            font-weight: bold;
+        }
+        
+        .stock-count {
+            margin-left: 10px;
+            font-size: 14px;
+        }
+        
+        .progress-bar {
+            height: 20px;
+            background-color: #126180;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        table th,
+        table td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        table th {
+            text-align: left;
+            background-color: #f2f2f2;
+        }
+        
+        table tr:last-child td {
+            border-bottom: none;
+        }
     </style>
 </head>
 <body>
@@ -216,35 +202,34 @@ table tr:last-child td {
         <div class="user-profile">
             <a href="./search"><i class="fas fa-search"></i></a>
             <a href="./Notification.html"><i class="fas fa-bell"></i></a>
-            <a href="./Profile.html" style="list-style-type: none;"><div class="user-initials">RS</div></a>
+            <a href="./Profile.html"><div class="user-initials">RS</div></a>
         </div>
-       
     </header>
    
- 
     <div class="sidebar">
         <ul>
-            <li><a href="./Dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
-            <li><a href=""><i class="fas fa-box"></i> Products</a></li>
-            <li><a href="./Products.html"><i class="fas fa-chart-pie"></i> Reports</a></li>
-            <li><a href="./Orders.html"><i class="fas fa-shopping-cart"></i> Orders</a></li>
-            <li><a href="./Sales-entry.html"><i class="fas fa-dollar-sign"></i> Sales</a></li>
-            <li><a href="./Add-Product.html"><i class="fas fa-plus"></i> Add Products</a></li>
-            <li><a href="./Manage-users.html"><i class="fas fa-users"></i> Manage Users</a></li>
-            <li><a href=""><i class="fas fa-cog"></i> Settings</a></li>
-            <li><a href="./Contact-us.html"><i class="fas fa-question-circle"></i> Need Support?</a></li>
-            <li><a href="./Terms-and-Conditions.html"><i class="fas fa-file-alt"></i> Terms and Conditions</a></li>
-            <li><a href="./Logout.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+           
+                <li><a href="./Dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="./Products.html"><i class="fas fa-box"></i> Products</a></li>
+                <li><a href=""><i class="fas fa-chart-pie"></i> Reports</a></li>
+                <li><a href="./Orders.html"><i class="fas fa-shopping-cart"></i> Orders</a></li>
+                <li><a href="./Sales-entry.html"><i class="fas fa-dollar-sign"></i> Sales</a></li>
+                <li><a href="./Add-Product.html"><i class="fas fa-plus"></i> Add Products</a></li>
+                <li><a href="./Manage-users.html"><i class="fas fa-users"></i> Manage Users</a></li>
+                <li><a href=""><i class="fas fa-cog"></i> Settings</a></li>
+                <li><a href="./Contact-us.html"><i class="fas fa-question-circle"></i> Need Support?</a></li>
+                <li><a href="./Terms-and-Conditions.html"><i class="fas fa-file-alt"></i> Terms and Conditions</a></li>
+                <li><a href="./Logout.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+           
         </ul>
     </div>
    
- 
     <div class="content">
         <div class="welcome-section">
             <h1>Welcome, Ruby Stores!</h1>
             <div class="action-buttons">
                 <a href="./Add-Product.html"><button class="action-buttons-add"><i class="fas fa-plus"></i> Add Product</button></a>
-                <a href="./Sales-entry.html"><button class="action-buttons-sales"><i class="fas fa-plus"></i> Record Sales</button></a>
+                <a href="./Sales-entry.html"><button class="action-buttons-sales"><i class="fas fa-dollar-sign"></i> Record Sales</button></a>
             </div>
         </div>
        
@@ -268,9 +253,7 @@ table tr:last-child td {
         <div class="data-section">
             <div class="stock-section">
                 <h3>Stock Levels</h3>
-                <div id="stockBarsContainer">
-                    <!-- Progress bars will be dynamically added here -->
-                </div>
+                <div id="stockBarsContainer"></div>
             </div>
            
             <div class="sales-section">
@@ -294,125 +277,118 @@ table tr:last-child td {
                     <!-- Table rows will be populated here -->
                 </tbody>
             </table>
-        </div>
     </div>
-   
-    <footer>
-        <!-- Footer content here -->
-    </footer>
- 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js">
 
-$(document).ready(function() {
-    // Sample data for dashboard
-    const totalIncome = "N 500,000";
-    const profit = "N 50,000";
-    const loss = "N 4,500";
 
-    // Populate dynamic data in the dashboard
-    $('#totalIncome').text(totalIncome);
-    $('#profit').text(profit).css('color', 'green');
-    $('#loss').text(loss).css('color', 'red');
-});
-   
-    // Sample data for stock levels
-const stockData = [
-    { label: 'bags', sold: 10, total: 30 },
-    { label: 'purse', sold: 95, total: 100 },
-    { label: 'sandals', sold: 50, total: 100 },
-    { label: 'sneakers', sold: 40, total: 40 }
-];
-   
-    const salesPerformance = {
-        January: 50,
-        February: 60,
-        March: 55,
-        April: 65,
-        May: 70
-    };
- 
-    const activities = [
-        { activity: 'New Item added', user: 'susan@gmail.com', date: '23/9/2023', time: '12:35 PM' },
-        { activity: 'New item sold', user: 'felxi@gmail.com', date: '23/9/2023', time: '12:35 PM' },
-        { activity: 'New item added', user: 'licial@gmail.com', date: '23/9/2023', time: '12:35 PM' }
-    ];
- 
-// Populate current date
-const currentDate = new Date().toLocaleDateString('en-US', {
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric'
-});
-document.getElementById('currentDate').innerText = currentDate;
- 
-    // Populate dynamic data in the dashboard
-    $('#totalIncome').text(totalIncome);
-    $('#profit').text(profit).css('color', 'green');
-    $('#loss').text(loss).css('color', 'red');
- 
-  // Function to populate stock levels
-function populateStockBars() {
-    const container = document.getElementById('stockBarsContainer');
-   
-    stockData.forEach((item, index) => {
-        const progress = (item.sold / item.total) * 100;
-        const barHtml = `
-            <div class="stock-item">
-                <span class="stock-label">${item.label}</span>
-                <span class="stock-count">${item.sold}/${item.total}</span>
-                <div class="progress-bar" id="stockProgressBar${index + 1}" style="width: ${progress}%;"></div>
-            </div>
-        `;
-        container.innerHTML += barHtml;
-    });
-}
- 
- 
-    // Initialize Chart.js for Sales Performance
-function initSalesChart() {
-    const ctx = document.getElementById('salesChart').getContext('2d');
-    const salesChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['January', 'February', 'March', 'April', 'May'],
-            datasets: [{
-                label: 'Sales Performance',
-                data: [50, 60, 55, 65, 70],
-                backgroundColor: '#126180',
-                borderColor: '#126180',
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
+         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+         <script>
+        $(document).ready(function() {
+            // Sample data for dashboard
+            const totalIncome = "N 500,000";
+            const profit = "N 50,000";
+            const loss = "N 4,500";
+
+            // Populate dynamic data in the dashboard
+            $('#totalIncome').text(totalIncome);
+            $('#profit').text(profit).css('color', 'green');
+            $('#loss').text(loss).css('color', 'red');
+
+            // Populate current date
+            const currentDate = new Date().toLocaleDateString('en-US', {
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric'
+            });
+            $('#currentDate').text(currentDate);
+
+            // Sample data for stock levels
+            const stockData = [
+                { label: 'bags', sold: 10, total: 30 },
+                { label: 'purse', sold: 95, total: 100 },
+                { label: 'sandals', sold: 50, total: 100 },
+                { label: 'sneakers', sold: 40, total: 40 }
+            ];
+
+            // Function to populate stock levels
+            function populateStockBars() {
+                const container = $('#stockBarsContainer');
+                
+                stockData.forEach((item, index) => {
+                    const progress = (item.sold / item.total) * 100;
+                    const barHtml = `
+                        <div class="stock-item">
+                            <span class="stock-label">${item.label}</span>
+                            <span class="stock-count">${item.sold}/${item.total}</span>
+                            <div class="progress-bar" id="stockProgressBar${index + 1}" style="width: ${progress}%;"></div>
+                        </div>
+                    `;
+                    container.append(barHtml);
+                });
             }
-        }
-    });
-}
- 
-// Call the function to populate stock bars
-populateStockBars();
- 
-// Initialize the bar chart
-initSalesChart();
- 
-    // Populate Recent Activities table
-    const activityTable = $('#activityTable tbody');
-    activities.forEach(activity => {
-        activityTable.append(`
-            <tr>
-                <td>${activity.activity}</td>
-                <td>${activity.user}</td>
-                <td>${activity.date}</td>
-                <td>${activity.time}</td>
-            </tr>
-        `);
-    });
-});
+
+            // Call the function to populate stock bars
+            populateStockBars();
+
+            // Sample data for sales performance
+            const salesPerformance = {
+                January: 50,
+                February: 60,
+                March: 55,
+                April: 65,
+                May: 70
+            };
+
+            // Initialize Chart.js for Sales Performance
+            function initSalesChart() {
+                const ctx = document.getElementById('salesChart').getContext('2d');
+                const salesChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: Object.keys(salesPerformance),
+                        datasets: [{
+                            label: 'Sales Performance',
+                            data: Object.values(salesPerformance),
+                            backgroundColor: '#126180',
+                            borderColor: '#126180',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                ticks: {
+                                    stepSize: 10
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            // Call the function to initialize the sales chart
+            initSalesChart();
+
+            // Sample data for recent activities
+            const activities = [
+                { activity: 'New Item added', user: 'susan@gmail.com', date: '23/9/2023', time: '12:35 PM' },
+                { activity: 'New item sold', user: 'felxi@gmail.com', date: '23/9/2023', time: '12:35 PM' },
+                { activity: 'New item added', user: 'licial@gmail.com', date: '23/9/2023', time: '12:35 PM' }
+            ];
+
+            // Populate Recent Activities table
+            const activityTable = $('#activityTable tbody');
+            activities.forEach(activity => {
+                activityTable.append(`
+                    <tr>
+                        <td>${activity.activity}</td>
+                        <td>${activity.user}</td>
+                        <td>${activity.date}</td>
+                        <td>${activity.time}</td>
+                    </tr>
+                `);
+            });
+        });
     </script>
-    <!-- <script src="../JS/script.js"></script> -->
 </body>
 </html>
